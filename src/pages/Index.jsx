@@ -24,7 +24,7 @@ const Index = () => {
   });
 
   const filteredStories = stories?.filter(story =>
-    story.title.toLowerCase().includes(searchTerm.toLowerCase())
+    story && story.title && story.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (error) return <div>An error occurred: {error.message}</div>;
@@ -44,7 +44,7 @@ const Index = () => {
       ) : (
         <div className="space-y-4">
           {filteredStories?.map(story => (
-            <StoryItem key={story.id} story={story} />
+            story && <StoryItem key={story.id} story={story} />
           ))}
         </div>
       )}
